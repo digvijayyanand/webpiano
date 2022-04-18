@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="stylepiano.css">
+    <link rel="stylesheet" href="addnotes.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="piano.html">Home
+        </a>
+        <!-- <a href="#news" onclick="location.href='authentication.html'">Sign-in/Sign-up</a> -->
+        <a href="savedmusic.html">Saved Musics</a>
+        <a href="addnotes.html" class="active">Add Notes</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div class="container-of-notes">
+        <div class="add-notes-container">
+            <div class="add-notes">
+                <center>
+                    <span>
+                        Add Notes
+                    </span>
+                </center>
+                <input type="text" class="note-name-notes" placeholder="Enter Note Name">
+                <textarea name="" class="take-notes-input" placeholder="Enter note"></textarea>
+                <div style="margin-left: 12px; margin-right: 12px;">
+                    <button class="save-note-notepad" onclick="user_input()">
+                        Add
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="show-notes-container">
+            <div class="show-notes">
+                <center>
+                    <span style="font-size: 25px; font-weight: bold;">
+                        Saved Self-help Notes
+                    </span>
+                </center>
+                <ol>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="addnotes.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                location.replace("authentication.html");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Piano</title>
+    <link rel="stylesheet" href="indexpianostyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="stylenotepad.css"> -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <style>
+        .containerM {
+            min-height: 55vh;
+        }
+
+        .stopwatch-cover {
+            min-height: 20vh;
+            align-items: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <script type="module" src="authen.js"></script> -->
+    <div class="topnav" id="myTopnav">
+        <a class="active"> Pianist
+        </a>
+        <a href="#news" onclick="location.href='authentication.html'">Sign-in/Sign-up</a>
+        <!-- <a href="#contact">Saved Musics</a> -->
+        <!-- <a href="#about">Pre-loaded Songs</a> -->
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <!-- <div id="user"> Hello, username</div> -->
+    <div class="container-body">
+        <!-- except log out -->
+        <div class="stopwatch-cover">
+            <div class="stopwatch-cont">
+                <div class="stopwatch" id="stopwatch">00: 00: 00</div>
+                <div class="play-start">
+                    <span class="start" onclick="start_timer()">Start</span>
+                    <span class="play pause" onclick="stop_timer()">Pause</span>
+                    <span class="reset" onclick="reset_timer()">Reset</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="containerM">
+            <div class="container container2">
+                <div class="container container21">
+                    <span class="key white" id="c-3">
+                        <span class="text-inside-button">
+                            c3
+                        </span>
+                    </span>
+                    <span class="key black" id="cs-3">
+                        <span class="text-inside-button">
+                            c#3
+                        </span>
+                    </span>
+                    <span class="key white" id="d-3">
+                        <span class="text-inside-button">
+                            d3
+                        </span>
+                    </span>
+                    <span class="key black" id="ds-3">
+                        <span class="text-inside-button">
+                            d#3
+                        </span>
+                    </span>
+                    <span class="key white" id="e-3">
+                        <span class="text-inside-button">
+                            e3
+                        </span>
+                    </span>
+                    <span class="key white" id="f-3">
+                        <span class="text-inside-button">
+                            f3
+                        </span>
+                    </span>
+                    <span class="key black" id="fs-3">
+                        <span class="text-inside-button">
+                            f#3
+                        </span>
+                    </span>
+                    <span class="key white" id="g-3">
+                        <span class="text-inside-button">
+                            g3
+                        </span>
+                    </span>
+                    <span class="key black" id="gs-3">
+                        <span class="text-inside-button">
+                            g#3
+                        </span>
+                    </span>
+
+
+                    <span class="key white" id="a-4">
+                        <span class="text-inside-button">
+                            a4
+                        </span>
+                    </span>
+                    <span class="key black" id="as-4">
+                        <span class="text-inside-button">
+                            a#4
+                        </span>
+                    </span>
+                    <!-- s in id is sharp -->
+                    <span class="key white" id="b-4">
+                        <span class="text-inside-button">
+                            b4
+                        </span>
+                    </span>
+                    <span class="key white" id="c-4">
+                        <span class="text-inside-button">
+                            c4
+                        </span>
+                    </span>
+                    <span class="key black" id="cs-4">
+                        <span class="text-inside-button">
+                            c#4
+                        </span>
+                    </span>
+                    <span class="key white" id="d-4">
+                        <span class="text-inside-button">
+                            d4
+                        </span>
+                    </span>
+                    <span class="key black" id="ds-4">
+                        <span class="text-inside-button">
+                            d#4
+                        </span>
+                    </span>
+                    <span class="key white" id="e-4">
+                        <span class="text-inside-button">
+                            e4
+                        </span>
+                    </span>
+                    <span class="key white" id="f-4">
+                        <span class="text-inside-button">
+                            f4
+                        </span>
+                    </span>
+                    <span class="key black" id="fs-4">
+                        <span class="text-inside-button">
+                            f#4
+                        </span>
+                    </span>
+                    <span class="key white" id="g-4">
+                        <span class="text-inside-button">
+                            g4
+                        </span>
+                    </span>
+                    <span class="key black" id="gs-4">
+                        <span class="text-inside-button">
+                            g#4
+                        </span>
+                    </span>
+
+
+                    <span class="key white" id="a-5">
+                        <span class="text-inside-button">
+                            a5
+                        </span>
+                    </span>
+                    <span class="key black" id="as-5">
+                        <span class="text-inside-button">
+                            a#5
+                        </span>
+                    </span>
+                    <!-- s in id is sharp -->
+                    <span class="key white" id="b-5">
+                        <span class="text-inside-button">
+                            b5
+                        </span>
+                    </span>
+                    <span class="key white" id="c-5">
+                        <span class="text-inside-button">
+                            c5
+                        </span>
+                    </span>
+                    <span class="key black" id="cs-5">
+                        <span class="text-inside-button">
+                            c#5
+                        </span>
+                    </span>
+                    <span class="key white" id="d-5">
+                        <span class="text-inside-button">
+                            d5
+                        </span>
+                    </span>
+                    <span class="key black" id="ds-5">
+                        <span class="text-inside-button">
+                            d#5
+                        </span>
+                    </span>
+                    <span class="key white" id="e-5">
+                        <span class="text-inside-button">
+                            e5
+                        </span>
+                    </span>
+                    <span class="key white" id="f-5">
+                        <span class="text-inside-button">
+                            f5
+                        </span>
+                    </span>
+                    <span class="key black" id="fs-5">
+                        <span class="text-inside-button">
+                            f#5
+                        </span>
+                    </span>
+                    <span class="key white" id="g-5">
+                        <span class="text-inside-button">
+                            g5
+                        </span>
+                    </span>
+                    <span class="key black" id="gs-5">
+                        <span class="text-inside-button">
+                            g#5
+                        </span>
+                    </span>
+
+
+                    <span class="key white" id="a-6">
+                        <span class="text-inside-button">
+                            a6
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="log-out">
+        <center id="log-out"> :)</center>
+    </div>
+    <audio id="c-3m" src="audio/3-c.wav"></audio>
+    <audio id="cs-3m" src="audio/3-cs.wav"></audio>
+    <audio id="d-3m" src="audio/3-d.wav"></audio>
+    <audio id="ds-3m" src="audio/3-ds.wav"></audio>
+    <audio id="e-3m" src="audio/3-e.wav"></audio>
+    <audio id="f-3m" src="audio/3-f.wav"></audio>
+    <audio id="fs-3m" src="audio/3-fs.wav"></audio>
+    <audio id="g-3m" src="audio/3-g.wav"></audio>
+    <audio id="gs-3m" src="audio/3-gs.wav"></audio>
+    <audio id="a-4m" src="audio/4-a.wav"></audio>
+    <audio id="as-4m" src="audio/4-as.wav"></audio>
+    <audio id="b-4m" src="audio/4-b.wav"></audio>
+    <audio id="c-4m" src="audio/4-c.wav"></audio>
+    <audio id="cs-4m" src="audio/4-cs.wav"></audio>
+    <audio id="d-4m" src="audio/4-d.wav"></audio>
+    <audio id="ds-4m" src="audio/4-ds.wav"></audio>
+    <audio id="e-4m" src="audio/4-e.wav"></audio>
+    <audio id="f-4m" src="audio/4-f.wav"></audio>
+    <audio id="fs-4m" src="audio/4-fs.wav"></audio>
+    <audio id="g-4m" src="audio/4-g.wav"></audio>
+    <audio id="gs-4m" src="audio/4-gs.wav"></audio>
+    <audio id="a-5m" src="audio/5-a.wav"></audio>
+    <audio id="as-5m" src="audio/5-as.wav"></audio>
+    <audio id="b-5m" src="audio/5-b.wav"></audio>
+    <audio id="c-5m" src="audio/5-c.wav"></audio>
+    <audio id="cs-5m" src="audio/5-cs.wav"></audio>
+    <audio id="d-5m" src="audio/5-d.wav"></audio>
+    <audio id="ds-5m" src="audio/5-ds.wav"></audio>
+    <audio id="e-5m" src="audio/5-e.wav"></audio>
+    <audio id="f-5m" src="audio/5-f.wav"></audio>
+    <audio id="fs-5m" src="audio/5-fs.wav"></audio>
+    <audio id="g-5m" src="audio/5-g.wav"></audio>
+    <audio id="gs-5m" src="audio/5-gs.wav"></audio>
+    <audio id="a-6m" src="audio/6-a.wav"></audio>
+    <!-- <script src="record.js"></script> -->
+    <script src="firebase-config.js"></script>
+    <script src="indexpiano.js"></script>
+    <script src="stopwatch.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                location.replace("piano.html");
+            }
+        });
+    </script>
+</body>
+
+</html>

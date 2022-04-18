@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Piano</title>
+    <link rel="stylesheet" href="addnotes.css">
+    <link rel="stylesheet" href="stylepiano.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="stylenotepad.css"> -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <style>
+        .homepage,
+        .savedmusicpage,
+        .addnotespage,
+        .timelinepage,
+        #log-out:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <script type="module" src="authen.js"></script> -->
+    <div class="topnav" id="myTopnav">
+        <a class="active homepage">Home</a>
+        <a href="savedmusic.html" class="savedmusicpage">Saved Musics</a>
+        <a href="addnotes.html" class="addnotespage">Add Notes</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="user"> Hello, username</div>
+    <div class="container-body">
+        <!-- except log out -->
+        <div>
+            <div class="stopwatch-cover">
+                <div class="stopwatch-cont">
+                    <div class="stopwatch" id="stopwatch">00: 00: 00</div>
+                    <div class="play-start">
+                        <span class="start" onclick="start_timer()">Start</span>
+                        <span class="play pause" onclick="stop_timer()">Pause</span>
+                        <span class="reset" onclick="reset_timer()">Reset</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="containerM">
+                <div class="container container2">
+                    <div class="container container21">
+                        <span class="key white" id="c-3">
+                            <span class="text-inside-button">
+                                c3
+                            </span>
+                        </span>
+                        <span class="key black" id="cs-3">
+                            <span class="text-inside-button">
+                                c#3
+                            </span>
+                        </span>
+                        <span class="key white" id="d-3">
+                            <span class="text-inside-button">
+                                d3
+                            </span>
+                        </span>
+                        <span class="key black" id="ds-3">
+                            <span class="text-inside-button">
+                                d#3
+                            </span>
+                        </span>
+                        <span class="key white" id="e-3">
+                            <span class="text-inside-button">
+                                e3
+                            </span>
+                        </span>
+                        <span class="key white" id="f-3">
+                            <span class="text-inside-button">
+                                f3
+                            </span>
+                        </span>
+                        <span class="key black" id="fs-3">
+                            <span class="text-inside-button">
+                                f#3
+                            </span>
+                        </span>
+                        <span class="key white" id="g-3">
+                            <span class="text-inside-button">
+                                g3
+                            </span>
+                        </span>
+                        <span class="key black" id="gs-3">
+                            <span class="text-inside-button">
+                                g#3
+                            </span>
+                        </span>
+
+
+                        <span class="key white" id="a-4">
+                            <span class="text-inside-button">
+                                a4
+                            </span>
+                        </span>
+                        <span class="key black" id="as-4">
+                            <span class="text-inside-button">
+                                a#4
+                            </span>
+                        </span>
+                        <!-- s in id is sharp -->
+                        <span class="key white" id="b-4">
+                            <span class="text-inside-button">
+                                b4
+                            </span>
+                        </span>
+                        <span class="key white" id="c-4">
+                            <span class="text-inside-button">
+                                c4
+                            </span>
+                        </span>
+                        <span class="key black" id="cs-4">
+                            <span class="text-inside-button">
+                                c#4
+                            </span>
+                        </span>
+                        <span class="key white" id="d-4">
+                            <span class="text-inside-button">
+                                d4
+                            </span>
+                        </span>
+                        <span class="key black" id="ds-4">
+                            <span class="text-inside-button">
+                                d#4
+                            </span>
+                        </span>
+                        <span class="key white" id="e-4">
+                            <span class="text-inside-button">
+                                e4
+                            </span>
+                        </span>
+                        <span class="key white" id="f-4">
+                            <span class="text-inside-button">
+                                f4
+                            </span>
+                        </span>
+                        <span class="key black" id="fs-4">
+                            <span class="text-inside-button">
+                                f#4
+                            </span>
+                        </span>
+                        <span class="key white" id="g-4">
+                            <span class="text-inside-button">
+                                g4
+                            </span>
+                        </span>
+                        <span class="key black" id="gs-4">
+                            <span class="text-inside-button">
+                                g#4
+                            </span>
+                        </span>
+
+
+                        <span class="key white" id="a-5">
+                            <span class="text-inside-button">
+                                a5
+                            </span>
+                        </span>
+                        <span class="key black" id="as-5">
+                            <span class="text-inside-button">
+                                a#5
+                            </span>
+                        </span>
+                        <!-- s in id is sharp -->
+                        <span class="key white" id="b-5">
+                            <span class="text-inside-button">
+                                b5
+                            </span>
+                        </span>
+                        <span class="key white" id="c-5">
+                            <span class="text-inside-button">
+                                c5
+                            </span>
+                        </span>
+                        <span class="key black" id="cs-5">
+                            <span class="text-inside-button">
+                                c#5
+                            </span>
+                        </span>
+                        <span class="key white" id="d-5">
+                            <span class="text-inside-button">
+                                d5
+                            </span>
+                        </span>
+                        <span class="key black" id="ds-5">
+                            <span class="text-inside-button">
+                                d#5
+                            </span>
+                        </span>
+                        <span class="key white" id="e-5">
+                            <span class="text-inside-button">
+                                e5
+                            </span>
+                        </span>
+                        <span class="key white" id="f-5">
+                            <span class="text-inside-button">
+                                f5
+                            </span>
+                        </span>
+                        <span class="key black" id="fs-5">
+                            <span class="text-inside-button">
+                                f#5
+                            </span>
+                        </span>
+                        <span class="key white" id="g-5">
+                            <span class="text-inside-button">
+                                g5
+                            </span>
+                        </span>
+                        <span class="key black" id="gs-5">
+                            <span class="text-inside-button">
+                                g#5
+                            </span>
+                        </span>
+
+
+                        <span class="key white" id="a-6">
+                            <span class="text-inside-button">
+                                a6
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="container-of-operations">
+                <div class="container container1">
+                    <div class="record-note-music">
+                        <div class="record-functions">
+                            <div class="record-icon">
+                                <div onclick="record_start()" id="record-logo" class="logo-record-stop">
+                                    <center>Start <br> recording</center>
+                                </div>
+                            </div>
+                            <div class="save-note-icon">
+                                <div class="logo-record-stop" onclick="record_end()" id="record-logo">
+                                    <center>Stop <br> recording</center>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress-box-cont">
+                            <div id="progress-box">
+                                <span class="progress-box"></span>
+                                <br>
+                                <span class="progress-box"></span>
+                                <small id="pre-text">
+                                    <!-- Hi Pianist, I am your personal help. I'll be assisting you in understanding the functionality of this web Piano :). <br> Save option will be available once you have recorded the note -->
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="save-note-container">
+                    <div class="save-note-icon-replica-cont">
+                        <div class="save-note-icon-replica">
+                            <button class="save-note-option">
+                                <center id="saved-note">Save Note?</center>
+                            </button>
+                            <button id="save-note-yes" class="save-note"
+                                onclick="SaveNoteText_pause(),shSaveNoteName()">Yes</button>
+                            <Button id="save-note-no" onclick="hiSaveNoteAsk(), noSave()">No</Button>
+                        </div>
+                    </div>
+                    <div class="save-note-name-container-container">
+                        <div class="save-note-name-container-display">
+                            <div class="save-note-name-container">
+                                <div id="save-notes-input-c">
+                                    <input id="saved-notes-input" type="text" placeholder="Music/song name?" required>
+                                </div>
+                                <div class="save-note-btn-save">
+                                    <button class="save-note-butn-save" type="submit"
+                                        onclick=" save_notes_name()">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="notepad">
+                <div class="show-notes-container">
+                    <div class="show-notes">
+                        <div style="background-color: black; color: white; display: flex;">
+                            <span id="guidelines" class="active-guide-help" style="font-size: 20px; font-weight: bold;"
+                                onclick="display_guidelines()">
+                                Guidelines
+                            </span>
+                            <span id="self-help" style="font-size: 20px; font-weight: bold;"
+                                onclick="display_selfhelp()">
+                                Saved Self-help Notes
+                            </span>
+                        </div>
+                        <div>
+                            <ol style="display: none;">
+                                <span><small>(scrollable)</small></span>
+                            </ol>
+                        </div>
+                        <div class="guidelines">
+                            <ol>
+                                <span><small>(scrollable)</small></span>
+                                <li> Playing Piano instructions
+                                    <small>
+                                        <p class="note-inside-li para-small">
+                                            note: key to be pressed <br>
+                                            c3: ‘q’ , c#3: ‘2’ , d3: ‘w’ , d#3: ‘3’….and so on till e4:‘p’
+                                            after that, press ‘z’ onwards, f4: ‘z’, f#4: ’s’..so on till g#5: ‘;’ a6:
+                                            ‘/’
+                                        </p>
+                                    </small>
+                                </li>
+                                <li>Stopwatch
+                                    <p class="note-inside-li para-small">
+                                        Stopwatch is as easy as it looks, a standard stopwatch.
+                                    </p>
+                                </li>
+                                <li>
+                                    Time spent
+                                    <p class="note-inside-li para-small">
+                                        At the time of log out, it will be shown to you the total time spent by you on home page, i.e the time for which you have played piano.
+                                    </p>
+                                </li>
+                                <li>
+                                    Personal Guide & Recording
+                                    <p class="note-inside-li para-small">
+                                        A personal guide is available (at the right of the “stop recording” option in
+                                        white
+                                        colour), which will guide you in recording the music(and its notes). Personal
+                                        help is only available on larger screens like laptops and tablets, not phones.
+                                        <br>
+                                        Once you record and save your notes, both notes in text form and audio form will
+                                        automatically be saved; you can access either or both on the saved music slide.
+                                        There is play and pause feature available for recorded notes.
+                                    </p>
+                                </li>
+                                <li>
+                                    Self-help notes
+                                    <p class="note-inside-li para-small">
+                                        There’s an extra feature of Self-help notes, which you can add in the "add notes
+                                        slide"(you can find it by clicking add notes on the nav bar at the top), and it
+                                        will be displayed on the home page. The reason why I added this feature is that at
+                                        times, one may forget notes of music while playing; this feature lets you
+                                        save notes in text form in advance and later, you can take help of the same note
+                                        while playing the piano. <br>
+                                        You can access your saved notes by clicking on "Saved Self-help Notes" at the side
+                                        of guidelines.(you have the option of switching the display of guidelines and
+                                        Self-help notes). This feature is also only available only on large screens.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="log-out">
+        <center><button id="log-out" onclick="logout()"> Log-Out</button></center>
+    </div>
+    <audio id="c-3m" src="audio/3-c.wav"></audio>
+    <audio id="cs-3m" src="audio/3-cs.wav"></audio>
+    <audio id="d-3m" src="audio/3-d.wav"></audio>
+    <audio id="ds-3m" src="audio/3-ds.wav"></audio>
+    <audio id="e-3m" src="audio/3-e.wav"></audio>
+    <audio id="f-3m" src="audio/3-f.wav"></audio>
+    <audio id="fs-3m" src="audio/3-fs.wav"></audio>
+    <audio id="g-3m" src="audio/3-g.wav"></audio>
+    <audio id="gs-3m" src="audio/3-gs.wav"></audio>
+    <audio id="a-4m" src="audio/4-a.wav"></audio>
+    <audio id="as-4m" src="audio/4-as.wav"></audio>
+    <audio id="b-4m" src="audio/4-b.wav"></audio>
+    <audio id="c-4m" src="audio/4-c.wav"></audio>
+    <audio id="cs-4m" src="audio/4-cs.wav"></audio>
+    <audio id="d-4m" src="audio/4-d.wav"></audio>
+    <audio id="ds-4m" src="audio/4-ds.wav"></audio>
+    <audio id="e-4m" src="audio/4-e.wav"></audio>
+    <audio id="f-4m" src="audio/4-f.wav"></audio>
+    <audio id="fs-4m" src="audio/4-fs.wav"></audio>
+    <audio id="g-4m" src="audio/4-g.wav"></audio>
+    <audio id="gs-4m" src="audio/4-gs.wav"></audio>
+    <audio id="a-5m" src="audio/5-a.wav"></audio>
+    <audio id="as-5m" src="audio/5-as.wav"></audio>
+    <audio id="b-5m" src="audio/5-b.wav"></audio>
+    <audio id="c-5m" src="audio/5-c.wav"></audio>
+    <audio id="cs-5m" src="audio/5-cs.wav"></audio>
+    <audio id="d-5m" src="audio/5-d.wav"></audio>
+    <audio id="ds-5m" src="audio/5-ds.wav"></audio>
+    <audio id="e-5m" src="audio/5-e.wav"></audio>
+    <audio id="f-5m" src="audio/5-f.wav"></audio>
+    <audio id="fs-5m" src="audio/5-fs.wav"></audio>
+    <audio id="g-5m" src="audio/5-g.wav"></audio>
+    <audio id="gs-5m" src="audio/5-gs.wav"></audio>
+    <audio id="a-6m" src="audio/6-a.wav"></audio>
+    <!-- <script src="record.js"></script> -->
+    <script src="firebase-config.js"></script>
+    <script src="index.js"></script>
+    <script src="piano.js"></script>
+    <script src="button_funcn.js"></script>
+    <script src="stopwatch.js"></script>
+    <script src="addnotes.js"></script>
+    <!-- <script src="timeline.js"></script> -->
+    <script src="replacelocation.js"></script>
+    <!-- <script src="notepad.js"></script> -->
+    <!-- <script src="savedmusic.js"></script> -->
+    <!-- <script src="authentication2.js"></script> -->
+</body>
+
+</html>

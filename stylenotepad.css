@@ -1,0 +1,53 @@
+.notepad{
+    border: 1px black solid;
+    width: 350px;
+    background-color: whitesmoke;
+    height: 300px;
+}
+#notepad-heading-1,#notepad-heading-2{
+    /* display: inline-block; */
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    /* border-bottom: black 0.5px solid; */
+    text-align: center;
+    margin-right: 2px;
+    padding-right: 4px;
+}
+#notepad-note{
+    all: unset;
+}
+.notepad-inside{
+    padding-top: 5px;
+}
+.button-cont{
+    display: flex;
+    flex-direction: row-reverse;
+}
+textarea:focus, textarea:focus, select:focus{
+    outline: none;
+    width: 345px;
+}
+textarea {
+    resize: none;
+    padding: 0px;
+    border: 0px;
+    width: 345px;
+    min-height:50px;
+    padding: 5px;
+    display: none;
+}
+#top-head{
+    display: flex;
+    background-color: gainsboro;
+}
+.active-option{
+    background-color: whitesmoke;
+    padding: 1px;
+    border: 1px gray solid;
+    border-bottom: none;
+    border-top: none;
+}
+#addNoteButton{
+    display: none;
+}

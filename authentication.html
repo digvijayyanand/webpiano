@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Piano</title>
+    <link rel="stylesheet" href="authentication.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div class="blank"></div>
+    <center><div id="error"></div></center>
+    <div id="sign-in-cc">
+        <div id="login-page-container">
+            <div id="hide-login">
+                <form id="loginForm">
+                    <div class="container">
+                        <center><label><b>Email-id</b></label></center>
+                        <br>
+                        <input id="email" type="text" placeholder="Enter Username" name="uname" required>
+                        <div id="password-c">
+                            <center><label><b>Password</b></label> <br></center>
+
+                            <input id="password" type="password" placeholder="Enter Password" required>
+                        </div>
+
+                        <button id="sign-in" type="submit">Login</button>
+                        <button id="password-reset-link" type="submit" style="display: none;"
+                            onclick="send_reset_link()">Send Password Reset Link</button>
+                        <!-- <label>
+                            <input type="checkbox" checked="checked" name="remember"> Remember me
+                        </label> -->
+                    </div>
+
+                    <div class="container container-forgot" style="background-color:#f1f1f1">
+                        <center><span class="psw">Forgot <a href="#" onclick="forgotPass()">password?</a></span>
+                        </center>
+                    </div>
+                </form>
+            </div>
+            <div id="signup-cont">
+                <button onclick="hideShow()" id="signup-btn">Sign-up & login instead
+                </button>
+            </div>
+            <center id="woLogin"><a href="index.html">Proceed w/o login</a></center>
+        </div>
+    </div>
+    <div>
+        <div style="height: 60px;"></div>
+        <div id="sign-up-page">
+            <form id="signUpForm">
+                <!-- <div class="imgcontainer">
+                        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                    </div> -->
+                <div class="container">
+                    <div>
+                        <center><label><b>Enter new email-id</b></label></center>
+                        <input id="email-signUp" type="text" placeholder="Enter Username" name="uname" required>
+                    </div>
+                    <div>
+                        <center><label><b>Enter Password</b></label></center>
+                        <input id="password-signUp" type="password" placeholder="Enter Password" required>
+                    </div>
+                    <button onclick="signUp()" id="sign-up" type="submit">Register & login</button>
+                    <!-- <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="firebase-config.js"></script>
+    <script src="authentication_login.js"></script>
+</body>
+
+</html>

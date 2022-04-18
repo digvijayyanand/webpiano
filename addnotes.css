@@ -1,0 +1,139 @@
+.add-notes,
+.show-notes {
+    margin-top: 5px;
+    /* padding-top: 2px; */
+    border: 2px solid black;
+    width: 450px;
+    height: 80vh;
+    margin-left: 10px;
+}
+
+.add-notes {
+    margin-left: 0px;
+}
+
+.take-notes-input,
+.note-name-notes {
+    width: 90%;
+    height: 70%;
+    margin: 10px;
+    resize: none;
+}
+
+.note-name-notes {
+    width: 90%;
+    height: auto;
+    position: relative;
+    left: 10px;
+
+}
+
+.container-of-notes {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.save-note-notepad {
+    float: right;
+    position: relative;
+}
+
+.show-notes {
+    overflow: auto;
+}
+
+.container-of-notes {
+    background-color: antiquewhite;
+    height: 100vh;
+}
+
+.add-notes {
+    background-color: gainsboro;
+}
+
+.show-notes {
+    background-color: silver;
+    width: 700px;
+}
+
+ol li {
+    font-size: 22px;
+    background: black;
+    color: white;
+    margin: 10px;
+}
+
+.note-inside-li {
+    background-color: rgb(219, 222, 225);
+    color: rgb(11, 12, 12);
+    text-align: justify;
+    margin-top: 0px;
+}
+
+.delete-note-button {
+    padding: 0px;
+    float: right;
+    height: 24px;
+}
+
+#guidelines,
+#self-help {
+    display: block;
+    padding: 5px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.show-notes {
+    display: block;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .add-notes,
+    .show-notes {
+        width: 350px;
+    }
+    .show-notes{
+        width: 600px;
+    }
+}
+@media screen and (max-width: 985px) {
+
+    .add-notes,
+    .show-notes {
+        width: 300px;
+    }
+    .show-notes{
+        width: 550px;
+    }
+}
+@media screen and (max-width: 880px) {
+
+    .container-of-notes{
+        display: block;
+        height: auto;
+    }
+    .add-notes,
+    .show-notes {
+        width: 650px;
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+    .save-note-notepad{
+        float: none;
+        position: relative;
+        top: 10px;
+    }
+    .add-notes-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .show-notes-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
