@@ -1,17 +1,19 @@
 var time_spent = 0;
 function session_end() {
-    time_spent = parseInt(localStorage.getItem('time_spent'));
-    time_spent += 2000;
+    if (localStorage.getItem('time_spent'))
+        time_spent = parseInt(localStorage.getItem('time_spent'));
+    time_spent += 1000;
     localStorage.setItem('time_spent', time_spent);
 }
-setInterval(session_end, 2000);
+//shut-up-digvijay
+setInterval(session_end, 1000);
 function time_calc() {
     let timespan = time_spent;
     let time_session;
     let hr, min, sec;
     hr = parseInt(timespan / (1000 * 60 * 60));
-    min = (parseInt(timespan / (1000 * 60)))%60;
-    sec = (parseInt(timespan / (1000)))%60;
+    min = (parseInt(timespan / (1000 * 60))) % 60;
+    sec = (parseInt(timespan / (1000))) % 60;
     if (hr < 10) {
         if (hr < 2)
             time_session = '0' + hr + 'hr ';
@@ -43,7 +45,7 @@ function time_calc() {
 }
 function logout() {
     time_calc();
-    localStorage.setItem('time_spent',0);
+    localStorage.setItem('time_spent', 0);
     setTimeout(() => {
         firebase.auth().signOut();
     }, 1000);
