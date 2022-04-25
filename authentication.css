@@ -1,82 +1,94 @@
-/* Bordered form */
-body{
-  background-color: rgb(20, 18, 18);
-  color: white;
+body {
+  background-color: gray;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
 }
-#sign-in-cc,#sign-up-page{
+
+#sign-in-cc,
+#sign-up-page {
   display: flex;
   justify-content: center;
+  opacity: 75%;
 }
-#signUpForm, #loginForm, #woLogin{
+
+#signUpForm,
+#loginForm,
+#woLogin {
   background-color: white;
   color: black;
 }
-.blank{
+
+.blank {
   height: 100px;
 
 }
+
 form {
-    border: 3px solid #f1f1f1;
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password] {
+  width: 400px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 400px;
+}
+
+/* Add hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+}
+
+.container-forgot {
+  padding: 0px;
+}
+
+@media screen and (max-width: 500px) {
+
+  input[type=text],
+  input[type=password] {
+    width: 250px;
   }
-  
-  /* Full-width inputs */
-  input[type=text], input[type=password] {
-    width: 400px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  
-  /* Set a style for all buttons */
+
   button {
-    background-color: black;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 400px;
+    width: 250px;
   }
-  
-  /* Add a hover effect for buttons */
-  button:hover {
-    opacity: 0.8;
-  }  
-  /* Add padding to containers */
-  .container {
-    padding: 16px;
-  }
-  .container-forgot{
-    padding: 0px;
-  }
-  /* The "Forgot password" text */
-  /* span.psw {
-    float: right;
-    padding-top: 16px;
-  } */
-  
-  /* Change styles for span and cancel button on extra small screens */
-  @media screen and (max-width: 500px) {
-    input[type=text], input[type=password]{
-      width: 250px;
-    }
-    button{
-      width: 250px;
-    }
-  }
+}
 
- #error{
-   color: red;;
- }
+#error {
+  color: red;
+  ;
+}
 
- #signUpForm{
-   display: none;
- }
- #signup-cont{
-   align-items: center;
-   background-color: white;
-   border: 3px solid #f1f1f1;
-   padding: 16px;
- }
+#signUpForm {
+  display: none;
+}
+
+#signup-cont {
+  align-items: center;
+  background-color: white;
+  border: 3px solid #f1f1f1;
+  padding: 16px;
+}
