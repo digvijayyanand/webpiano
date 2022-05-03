@@ -1,0 +1,74 @@
+.users_list_sub{
+    /* background-color: gainsboro; */
+    color: black;
+    font-size: 20px;
+    border-bottom: 1px black solid;
+    width: 30vw;
+}
+.users_list_sub:hover{
+    background-color: slategrey;
+    color: seashell;
+}
+#users_list{
+    list-style-type: disclosure-open;
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.users-songs-cont{
+    background-color: rgb(55 55 55);;
+    width: 70vw;
+    padding: 0px;
+    margin-left: 10px;
+    min-height: 80vh;
+    color: #c4bfb5
+}
+/* #users_list{
+    min-height: 80vh;
+} */
+.public-container{
+    display: flex;
+}
+#song-list-public{
+    padding-left: 30px;
+    padding-top: 15px;
+}
+.song-list-sub{
+    /* background-color: gainsboro; */
+    color: black;
+    font-size: 20px;
+    width: 55vw;
+    color: white;
+}
+.all_songs_user:hover{
+    background-color: rgb(104, 108, 108);
+    color: white;
+}
+#list-container{
+    background-color: whitesmoke;
+    min-height: 80vh;
+
+}
+button{
+    padding: 0px;
+    float: right;
+}
+button:hover{
+    background-color: cornsilk;
+}
+.users-collection-container{
+    background-color: #0a082d;
+    color: azure;
+}
+.user_box{
+    display: flex; padding-bottom: 5px; padding-top: 15px;
+}
+.user_box_song_head{
+    font-size: 30px; padding-bottom: 10px;
+}
+.all_songs_user{
+    border-bottom: 1px black solid;
+}
+.stop-music-button,.pause-note-button,.resume-note-button{
+    display: none;
+}
