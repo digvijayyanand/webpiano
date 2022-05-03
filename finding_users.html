@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Music</title>
+    <link rel="shortcut icon" href="photos/music_note_fav1.png" type="image/x-icon">
+    <link rel="stylesheet" href="stylepiano.css">
+    <link rel="stylesheet" href="savedmusic.css">
+    <link rel="stylesheet" href="fincding_users.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div class="topnav" id="myTopnav">
+        <a href="piano.html">Home
+        </a>
+        <!-- <a href="#news" onclick="location.href='authentication.html'">Sign-in/Sign-up</a> -->
+        <a href="savedmusic.html">Saved Musics</a>
+        <a href="addnotes.html">Add Notes</a>
+        <a href="finding_users.html" class="active">Other users</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <h2>Users List</h2>
+    <div class="public-container">
+        <div id="list-container">
+            <ul id="users_list">
+
+            </ul>
+        </div>
+        <div class="users-songs-cont" style="display: none;">
+            <div class="users-collection-container">
+                <div class="user_box">
+                    <div class="user_name">
+                        &nbsp; <span id="user_name_name">Name:</span>
+                    </div>
+                    <!-- <div>
+                        User id:
+                    </div> -->
+                </div>
+                <hr>
+            </div>
+            <ol id="song-list-public">
+                <div class="user_box_song_head" style="padding-bottom: 20px;">
+                    Songs
+                </div>
+                <div class="user_list_of_song">
+                    <li class="song-list-sub">
+                        song1
+                        <button><small>Copy <small>to your saved music list</small></small></button>
+                        <button>Play</button>
+                    </li>
+                </div>
+            </ol>
+        </div>
+    </div>
+    <!-- <div class="dropdown">
+        <div style="position: relative;">
+            Options
+        </div>
+        on click on options show option list, else hide by default or double click
+        <div style="position: absolute; display: none;">
+            <div>
+                list-1
+            </div>
+            <div>
+                list-2
+            </div>
+            <div>
+                list-3
+            </div>
+        </div> -->
+    </div>
+    <audio id="c-3m" src="audio/3-c.wav"></audio>
+    <audio id="cs-3m" src="audio/3-cs.wav"></audio>
+    <audio id="d-3m" src="audio/3-d.wav"></audio>
+    <audio id="ds-3m" src="audio/3-ds.wav"></audio>
+    <audio id="e-3m" src="audio/3-e.wav"></audio>
+    <audio id="f-3m" src="audio/3-f.wav"></audio>
+    <audio id="fs-3m" src="audio/3-fs.wav"></audio>
+    <audio id="g-3m" src="audio/3-g.wav"></audio>
+    <audio id="gs-3m" src="audio/3-gs.wav"></audio>
+    <audio id="a-4m" src="audio/4-a.wav"></audio>
+    <audio id="as-4m" src="audio/4-as.wav"></audio>
+    <audio id="b-4m" src="audio/4-b.wav"></audio>
+    <audio id="c-4m" src="audio/4-c.wav"></audio>
+    <audio id="cs-4m" src="audio/4-cs.wav"></audio>
+    <audio id="d-4m" src="audio/4-d.wav"></audio>
+    <audio id="ds-4m" src="audio/4-ds.wav"></audio>
+    <audio id="e-4m" src="audio/4-e.wav"></audio>
+    <audio id="f-4m" src="audio/4-f.wav"></audio>
+    <audio id="fs-4m" src="audio/4-fs.wav"></audio>
+    <audio id="g-4m" src="audio/4-g.wav"></audio>
+    <audio id="gs-4m" src="audio/4-gs.wav"></audio>
+    <audio id="a-5m" src="audio/5-a.wav"></audio>
+    <audio id="as-5m" src="audio/5-as.wav"></audio>
+    <audio id="b-5m" src="audio/5-b.wav"></audio>
+    <audio id="c-5m" src="audio/5-c.wav"></audio>
+    <audio id="cs-5m" src="audio/5-cs.wav"></audio>
+    <audio id="d-5m" src="audio/5-d.wav"></audio>
+    <audio id="ds-5m" src="audio/5-ds.wav"></audio>
+    <audio id="e-5m" src="audio/5-e.wav"></audio>
+    <audio id="f-5m" src="audio/5-f.wav"></audio>
+    <audio id="fs-5m" src="audio/5-fs.wav"></audio>
+    <audio id="g-5m" src="audio/5-g.wav"></audio>
+    <audio id="gs-5m" src="audio/5-gs.wav"></audio>
+    <audio id="a-6m" src="audio/6-a.wav"></audio>
+    <script src="firebase-config.js"></script>
+    <script src="finding_users.js"></script>
+    <script>
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                location.replace("authentication.html");
+            }
+            else {
+                userRefFunc();
+            }
+        });
+    </script>
+</body>
+
+</html>
