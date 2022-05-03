@@ -33,6 +33,7 @@
         <a class="active homepage">Home</a>
         <a href="savedmusic.html" class="savedmusicpage">Saved Musics</a>
         <a href="addnotes.html" class="addnotespage">Add Notes</a>
+        <a href="finding_users.html">Other users</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -282,9 +283,18 @@
                                 </div>
                                 <div class="save-note-btn-save">
                                     <button class="save-note-butn-save" type="submit"
-                                        onclick=" save_notes_name()">Save</button>
+                                        onclick=" save_notes_name(),SaveNotText_cont()">Save</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="public-save-note-cont">
+                        <div class="public-save-note">
+                            <button class="save-note-public-option">
+                                <center id="saved-note-public">Add note to public Profile also?</center>
+                            </button>
+                            <button id="save-note-public-yes" onclick="publicSong();">Yes</button>
+                            <Button id="save-note-public-no" onclick="publicNo();">No</Button>
                         </div>
                     </div>
                 </div>
@@ -330,7 +340,8 @@
                                 <li>
                                     Time spent
                                     <p class="note-inside-li para-small">
-                                        At the time of log out, it will be shown to you the total time spent by you on home page, i.e the time for which you have played piano.
+                                        On pressing log-out, a pop-up showing total time spended by you on home page
+                                        will be displayed... i.e the time for which you have played piano.
                                     </p>
                                 </li>
                                 <li>
@@ -350,14 +361,23 @@
                                     Self-help notes
                                     <p class="note-inside-li para-small">
                                         There’s an extra feature of Self-help notes, which you can add in the "add notes
-                                        slide"(you can find it by clicking add notes on the nav bar at the top), and it
-                                        will be displayed on the home page. The reason why I added this feature is that at
+                                        slide"(it can be found at the second left of home page button), and it
+                                        will be displayed on the home page. The reason why I added this feature is that
+                                        at
                                         times, one may forget notes of music while playing; this feature lets you
                                         save notes in text form in advance and later, you can take help of the same note
                                         while playing the piano. <br>
-                                        You can access your saved notes by clicking on "Saved Self-help Notes" at the side
+                                        You can access your saved notes by clicking on "Saved Self-help Notes" at the
+                                        side
                                         of guidelines.(you have the option of switching the display of guidelines and
                                         Self-help notes). This feature is also only available only on large screens.
+                                    </p>
+                                </li>
+                                <li>
+                                    Responsive - website
+                                    <p class="note-inside-li para-small">
+                                        This site is responsive i.e it will also work on screens with small
+                                        size(smartphones, tabs, etc), but some features reserved only for large screens.
                                     </p>
                                 </li>
                             </ol>
