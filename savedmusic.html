@@ -1,147 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+@media screen and (max-width:840px) {
+    h2 {
+        font-size: 37px;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saved Music</title>
-    <link rel="shortcut icon" href="photos/music_note_fav1.png" type="image/x-icon">
-    <style>
-        body {
-            background-color: gainsboro;
-        }
+    ol li {
+        font-size: 22px;
+        margin: 8px;
+    }
 
-        h2 {
-            font-size: 40px;
-            background-color: white;
-        }
+    button {
+        padding-bottom: 4px;
+        margin-right: 3.5px;
+        height: 23px;
+    }
 
-        ol li {
-            font-size: 25px;
-            background: black;
-            color: white;
-            margin: 10px;
-        }
+    .delete-note-button {
+        padding-right: 2.5px;
+    }
+}
 
-        .music-notes-display {
-            position: relative;
-            left: 20px;
-            font-size: 17px;
-            background-color: white;
-            color: black;
-            width: 95%;
-            text-align: justify;
-        }
+@media screen and (max-width:550px) {
+    h2 {
+        font-size: 30px;
+    }
 
-        button {
-            box-sizing: border-box;
-            float: right;
-            padding-bottom: 5px;
-            margin-right: 4px;
-            height: 25px;
-        }
+    ol li {
+        font-size: 17px;
+        margin: 6px;
+    }
 
-        .play-music-button {
-            box-shadow: 2px 2px;
-            ;
-        }
+    button {
+        padding-bottom: 3px;
+        margin-right: 3px;
+        height: 18px;
+    }
 
-        .hide-note-button {
-            display: none;
-        }
+    .delete-note-button {
+        padding-right: 2px;
+    }
+    img{
+        width:12px;
+        height: auto;
+    }
+}
+@media screen and (max-width:450px) {
+    h2 {
+        font-size: 25px;
+    }
 
-        .stop-music-button {
-            display: none;
-        }
+    ol li {
+        font-size: 12px;
+        margin: 4px;
+    }
 
-        .delete-note-button {
-            float: right;
-            padding-right: 3px;
-            background-color: white;
-        }
+    button {
+        padding-bottom: 0.5px;
+        margin-right: 0.5px;
+        height: 12px;
+        font-size: 8px;
+    }
 
-        .resume-note-button {
-            display: none;
-        }
-
-        .pause-note-button {
-            display: none;
-        }
-    </style>
-    <link rel="stylesheet" href="stylepiano.css">
-    <link rel="stylesheet" href="savedmusic.css">
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-analytics.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-</head>
-
-<body>
-    <div class="topnav" id="myTopnav">
-        <a href="piano.html">Home
-        </a>
-        <!-- <a href="#news" onclick="location.href='authentication.html'">Sign-in/Sign-up</a> -->
-        <a href="savedmusic.html" class="active">Saved Musics</a>
-        <a href="addnotes.html">Add Notes</a>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-    <h2>Saved Songs</h2>
-    <div id="list-container">
-        <ol id="saved_music_list">
-            <!-- <li> checking shownote
-                <span class="music-notes-display">
-                    <br>
-                    show notes :)
-                </span>
-            </li>
-            <li> checking shownote 2
-                <span class="music-notes-display">
-                    <br>
-                    show notes :)
-                </span>
-            </li> -->
-        </ol>
-    </div>
-    <audio id="c-3m" src="audio/3-c.wav"></audio>
-    <audio id="cs-3m" src="audio/3-cs.wav"></audio>
-    <audio id="d-3m" src="audio/3-d.wav"></audio>
-    <audio id="ds-3m" src="audio/3-ds.wav"></audio>
-    <audio id="e-3m" src="audio/3-e.wav"></audio>
-    <audio id="f-3m" src="audio/3-f.wav"></audio>
-    <audio id="fs-3m" src="audio/3-fs.wav"></audio>
-    <audio id="g-3m" src="audio/3-g.wav"></audio>
-    <audio id="gs-3m" src="audio/3-gs.wav"></audio>
-    <audio id="a-4m" src="audio/4-a.wav"></audio>
-    <audio id="as-4m" src="audio/4-as.wav"></audio>
-    <audio id="b-4m" src="audio/4-b.wav"></audio>
-    <audio id="c-4m" src="audio/4-c.wav"></audio>
-    <audio id="cs-4m" src="audio/4-cs.wav"></audio>
-    <audio id="d-4m" src="audio/4-d.wav"></audio>
-    <audio id="ds-4m" src="audio/4-ds.wav"></audio>
-    <audio id="e-4m" src="audio/4-e.wav"></audio>
-    <audio id="f-4m" src="audio/4-f.wav"></audio>
-    <audio id="fs-4m" src="audio/4-fs.wav"></audio>
-    <audio id="g-4m" src="audio/4-g.wav"></audio>
-    <audio id="gs-4m" src="audio/4-gs.wav"></audio>
-    <audio id="a-5m" src="audio/5-a.wav"></audio>
-    <audio id="as-5m" src="audio/5-as.wav"></audio>
-    <audio id="b-5m" src="audio/5-b.wav"></audio>
-    <audio id="c-5m" src="audio/5-c.wav"></audio>
-    <audio id="cs-5m" src="audio/5-cs.wav"></audio>
-    <audio id="d-5m" src="audio/5-d.wav"></audio>
-    <audio id="ds-5m" src="audio/5-ds.wav"></audio>
-    <audio id="e-5m" src="audio/5-e.wav"></audio>
-    <audio id="f-5m" src="audio/5-f.wav"></audio>
-    <audio id="fs-5m" src="audio/5-fs.wav"></audio>
-    <audio id="g-5m" src="audio/5-g.wav"></audio>
-    <audio id="gs-5m" src="audio/5-gs.wav"></audio>
-    <audio id="a-6m" src="audio/6-a.wav"></audio>
-    <script src="firebase-config.js"></script>
-    <script src="savedmusic.js"></script>
-</body>
-
-</html>
+    .delete-note-button {
+        padding-right: 1px;
+    }
+    img{
+        height: 10px;
+        width: auto;
+    }
+}
