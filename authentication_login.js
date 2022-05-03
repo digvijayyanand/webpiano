@@ -14,14 +14,29 @@ var signup = false;
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         if (signup) {
-            var userRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid);
+            var name = document.querySelector('#name-signUp').value;
+            let name_wosp=name.replaceAll(' ','_');
+            var userRefAll = firebase.firestore();
+            var userRef = userRefAll.collection('users').doc(firebase.auth().currentUser.uid);
+            var userRefPub = userRefAll.collection('users_pub').doc(firebase.auth().currentUser.uid);
             var setWithMerge = userRef.set({
                 'song_name_list': [],
-                'notes': []
+                'notes': [],
+                'name': name
             }, { merge: true }).then(() => {
                 //console.log("Document successfully written!");
-                alert('Signed up successfully!!');
-                location.replace("piano.html");
+                var setWithMerge2 = userRefPub.set({
+                    'song_name_list': [],
+                    'notes': [],
+                    'name': name
+                }, { merge: true }).then(() => {
+                    alert('Signed up successfully!!');
+                    location.replace("piano.html");
+                }).catch((error) => {
+                    alert(error.message);
+                });
+            }).catch((error) => {
+                alert(error.message);
             });
             signup = false;
             // setTimeout(() => {
@@ -55,11 +70,15 @@ function signUp() {
     signup = true;
     var email = document.querySelector('#email-signUp').value;
     var password = document.querySelector('#password-signUp').value;
-    firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
-        var user = userCredential.user;
-    }).catch((error) => {
-        document.getElementById("error").innerHTML = error.message;
-    });
+    if (!(document.querySelector('#name-signUp').value.trim() == ''))
+        firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+            var user = userCredential.user;
+        }).catch((error) => {
+            document.getElementById("error").innerHTML = error.message;
+        });
+    else {
+        alert('Please write your name');
+    }
 }
 
 function forgotPass() {
