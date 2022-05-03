@@ -213,6 +213,12 @@ document.getElementById('users_list').addEventListener('click', (e => {
     for (i = 0; i < users_no; i++)
         document.getElementsByClassName('song-list-sub')[i].style.display = 'none';
     document.getElementById(id + '-songs').style.display = 'block';
+    let length_playSaved = play_saved.length
+    while (length_playSaved > 0) {
+        clearTimeout(play_saved[length_playSaved - 1]);
+        length_playSaved--;
+    }
+    play_saved = [];
 }))
 document.getElementById('song-list-public').addEventListener('click', (ve) => {
     ve.preventDefault();
