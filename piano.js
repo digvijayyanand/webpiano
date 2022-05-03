@@ -101,6 +101,37 @@ var time;
 var time_rec_s = [];
 var note_txt_s = [];
 var note_index_s = [];
+var userRefAll, userRef, userRefPub;
+var song_name, song_name_wo_sp;
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        userRefAll = firebase.firestore();
+        userRef = userRefAll.collection('users').doc(firebase.auth().currentUser.uid);
+        userRefPub = userRefAll.collection('users_pub').doc(firebase.auth().currentUser.uid);
+    }
+});
+function empty() {
+    time_rec_s = [];
+    note_txt_s = [];
+    note_index_s = [];
+    song_name_wo_sp = '';
+    song_name = '';
+}
+function hide_show(hideBool, classBool, class_id) {
+    if (hideBool) {
+        if (classBool)
+            document.getElementsByClassName(class_id)[0].style.display = 'none';
+        else
+            document.getElementById(class_id).style.display = 'none';
+    }
+    else {
+        if (classBool)
+            document.getElementsByClassName(class_id)[0].style.display = 'block';
+        else
+            document.getElementById(class_id).style.display = 'block';
+    }
+}
+
 function record_start() {
     // document.getElementById("record-text").innerHTML="<p> Recording </p";
     if ((!record1) && (!record_btn)) {
@@ -125,20 +156,14 @@ function record_start() {
 }
 function record_end() {
     if (record1 && record_btn) {
-        //document.getElementsByClassName('save-note-icon')[0].style['background-color'] = 'crimson';
-
         document.getElementsByClassName('save-note-icon')[0].style['box-shadow'] = 'none';
         setTimeout(() => {
             document.getElementsByClassName('save-note-icon')[0].style['box-shadow'] = '1px 1px';
         }, 100);
         setTimeout(() => {
-            let sh = document.getElementsByClassName('save-note-icon-replica')[0];
-            sh.style['display'] = 'block';
+            hide_show(false, true,'save-note-icon-replica');
         }, 800);
-        //play_func();
-        //document.getElementById("record-text").innerHTML="<p> Recording Ended </p";
         record_btn = false;
-        //console.log(note_txt, note_index, time_rec)
         setTimeout(() => {
             document.getElementById('progress-box').innerHTML = "Recording Ended!!"
         }, 800);
@@ -172,28 +197,51 @@ function play_func() {
         playtune(time_rec[i], note_index[i]);
     }
 }
+//saving note to public profile as well
+function publicSong() {
+    var setWithMerge = userRefPub.set({
+        [song_name_wo_sp]: {
+            'song-name': song_name,
+            "time-period": time_rec_s,
+            'notes': note_txt_s,
+            "notes-index": note_index_s
+        }
+    }, { merge: true }).then(() => {
+        userRefPub.update({
+            'song_name_list': firebase.firestore.FieldValue.arrayUnion(...[song_name_wo_sp])
+        }).then(() => {
+            hide_show(true, true,'public-save-note' )
+            empty();
+            document.getElementById('progress-box').innerHTML = "Saved on public profile as well:)";
+            setTimeout(() => {
+                document.getElementById('progress-box').innerHTML = "Hi Pianist, I am your personal help. I'll be assisting you in understanding the functionality of this web Piano :) ";
+            }, 1200);
+        });
+    })
+}
+function publicNo() {
+    document.getElementById('progress-box').innerHTML = "Saved only on private profile";
+    hide_show(true, true, 'public-save-note')
+    empty();
+    setTimeout(() => {
+        document.getElementById('progress-box').innerHTML = "Hi Pianist, I am your personal help. I'll be assisting you in understanding the functionality of this web Piano :) ";
+    }, 1200);
+}
 //saving song notes to firestore
-function SaveNotes(song_name, song_name_wo_sp) {
+function SaveNotes() {
     //song name without space
-    var userRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid);
     var setWithMerge = userRef.set({
         [song_name_wo_sp]: {
             'song-name': song_name,
             "time-period": time_rec_s,
-            notes: note_txt_s,
+            'notes': note_txt_s,
             "notes-index": note_index_s
         }
     }, { merge: true }).then(() => {
-        let hi = document.getElementsByClassName('save-note-name-container-display')[0];
-        hi.style['display'] = 'none';
-        document.getElementById('progress-box').innerHTML = "Saved :)";
-        setTimeout(() => {
-            document.getElementById('progress-box').innerHTML = "Hi Pianist, I am your personal help. I'll be assisting you in understanding the functionality of this web Piano :) ";
-        }, 1200);
+        hide_show(true, true, 'save-note-name-container-display')
+        document.getElementById('progress-box').innerHTML = "Saved :) \n Please select yes if you wish to add the song to public profile also";
+        hide_show(false, true, 'public-save-note');
     });
-    time_rec_s = [];
-    note_txt_s = [];
-    note_index_s = [];
 }
 function add_song_list(song_name) {
     var songlistref = firebase.firestore().collection('users').doc(firebase.auth().currentUser.uid);
@@ -207,17 +255,14 @@ function save_notes_name() {
     if (record1) {
         record1 = false;
         document.getElementsByClassName('record-icon')[0].style['background-color'] = 'greenyellow';
-        //document.getElementsByClassName('save-note-icon')[0].style['background-color'] = 'crimson';
         document.getElementsByClassName('save-note-icon')[0].style['box-shadow'] = '2px 2px';
         document.getElementsByClassName('record-icon')[0].style['box-shadow'] = '2px 2px';
-        var song_name = document.querySelector('#saved-notes-input').value;
-        var song_name_wo_sp = song_name.replaceAll(' ', '-');
-        // console.log(song_name);
-        // console.log(song_name_wo_sp);
+        song_name = document.querySelector('#saved-notes-input').value;
+        song_name_wo_sp = song_name.replaceAll(' ', '-');
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 add_song_list(song_name_wo_sp);//adding song name to song name list
-                SaveNotes(song_name, song_name_wo_sp);
+                SaveNotes();
             }
         });
         document.querySelector('#saved-notes-input').value = "";
@@ -246,7 +291,6 @@ function SaveNotText_cont() {
 //         console.log(daata.length);
 //     });
 // }
-
 function style() {
     var mq = window.matchMedia("(max-width: 538px)");
     if (mq.matches) {
@@ -258,9 +302,8 @@ function style() {
         for (let i = 29; i < 34; i++) {
             classkey[i].style['display'] = 'none'
         }
-        document.getElementById('progress-box').style['display']='none';
+        document.getElementById('progress-box').style['display'] = 'none';
     }
-    //34 
     else {
         let classkey = document.getElementsByClassName('key');
         for (let i = 0; i < 12; i++) {
@@ -269,7 +312,7 @@ function style() {
         for (let i = 29; i < 34; i++) {
             classkey[i].style['display'] = 'block';
         }
-        document.getElementById('progress-box').style['display']='block';
+        document.getElementById('progress-box').style['display'] = 'block';
     }
 }
 setInterval(() => {
