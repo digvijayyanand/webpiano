@@ -1,3 +1,4 @@
+/* Bordered form */
 body {
   background-color: gray;
   background-position: center;
@@ -51,7 +52,7 @@ button {
   width: 400px;
 }
 
-/* Add hover effect for buttons */
+/* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
 }
@@ -65,6 +66,13 @@ button:hover {
   padding: 0px;
 }
 
+/* The "Forgot password" text */
+/* span.psw {
+    float: right;
+    padding-top: 16px;
+  } */
+
+/* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 500px) {
 
   input[type=text],
